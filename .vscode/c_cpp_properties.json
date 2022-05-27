@@ -1,0 +1,31 @@
+{
+  "env": {
+    "myDefaultIncludePath": ["/Library/Developer/CommandLineTools/usr/include/c++/v1"],
+    "myCompilerPath": "/usr/bin/g++"
+  },
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/Library/Developer/CommandLineTools/usr/include/c++/v1",
+                "/Applications/XCode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/",
+                "${workspaceRoot}",
+                "${workspaceFolder}"
+            ],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 4
+}
