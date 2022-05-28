@@ -2,21 +2,20 @@
 #ifndef LEC1_NODE_H
 #define LEC1_NODE_H
 
-
-template <typename T>			
+		
 //This Node class can accept any types of data
 class Node {
 private:
-	T data;
-	Node<T> * pNext = nullptr;
+	int data;
+	Node * pNext = nullptr;
 public:
 	Node() {};
 	Node(T data) {
 		this->data = data;
 		this->pNext = nullptr;
 	}
-	Node<T> & operator [] (int index) {
-		Node<T> * n = this;
+	Node & operator [] (int index) {
+		Node * n = this;
 		for (int i = 0; i < index; i++) {
 			n = n->pNext;
 		}
@@ -25,25 +24,25 @@ public:
 	};
 
 
-	void operator = (T data) {
+	void operator = (int data) {
 		this->data = data;
 	};
 
-    void setData(T data) {
+    void setData(int data) {
         this->data = data;
     };
 
-	bool operator == (T data) {
+	bool operator == (int data) {
 		return this->data == data;
 	}
 
     // & no copy
-	T & get() {
+	int & get() {
 		return this->data;
 	}
 
     //return a reference
-	Node<T> * getNext() {
+	Node * getNext() {
 		return this->pNext;
 	};
 
@@ -70,8 +69,6 @@ public:
 		this->pNext = nullptr;
 		delete this->pNext;
 	};
-
-
 };
 
 #endif
