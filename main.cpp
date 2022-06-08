@@ -1,7 +1,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+//#include "Node.h"
+#include "AStar.h"
+#include <thread>
 #include "Node.h"
+#include "Stack.h"
+#include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -16,10 +22,15 @@ using namespace std;
 //destructors
 //mutable immutable
 //static variables
-//templates
-//lambdas
-//concurency
+//templates         
+//lambdas           #we are around here
+//concurency        thread, mutex
 //exceptions
+//stack
+//queue
+//steams
+
+
 
 //vectors
 //hashtables
@@ -144,9 +155,35 @@ struct LinkedList {
     }
 };
 
+void someFunc() {
+    //do someth
+};
 
 int main() 
 {
+    /**
+     * @brief 
+     * stack
+     * 1    someFunc()
+     * 2        *
+     * 3        *
+     * 4    arr[]
+     * 5    arr[0]
+     * 6    arr[1]
+     * 7    arr[2]
+     * 8    Node1
+     * 9    data
+     * 10   ptr = 17
+     * 11
+     * 12
+     * ...
+     * 17   Node2
+     * 18   data
+     * 19   ptr 
+     */
+
+    // node1 (data, ptr) -> node2 (data, ptr) 
+    cout << &someFunc << "\n";
     function<void(int)> callback = [&](int i) {
         cout << "We have got some calculated data: " << i << " then we've added 1";
         return i+1;
@@ -154,10 +191,19 @@ int main()
 
     vector<string> vec1{"test", "test2"};
     char arr[] = {"testtest2"}; // \0 
-    int arr2[] = {10, 20, 30};
+    int64_t arr2[] = {10, 20, 30};
 
-    int*arrPtr;
-    arrPtr = arr2;
+    cout << *(arr2+4) << "\n";
+
+    Node<int> * firstNode = new Node<int>{1};
+    Node<int> firstNode_data = *(firstNode);
+    Node<int> * firstNode_ptr = &firstNode_data;
+
+    cout << firstNode << "\n";
+
+
+    //int*arrPtr;
+    //arrPtr = arr2;
 
     //cout << *(arrPtr+2) << endl;
 
@@ -213,22 +259,22 @@ int main()
         //std::cout << arr[n] << "\n";
     };
 
-
     //possible errors with complex types
-    Node<int> node = Node(1);
+    // Node<int> node = Node(1);
 
 
-    node.get() = 2;
+    // node.get() = 2;
 
-    node.setNext(4);
-    node.setNext(6);
+    // node.setNext(4);
+    // node.setNext(6);
 
-    node.traverse();
+    // node.traverse();
 
     //Homework
     //Make Node class as a template
     //create class NodeStorage that will store, add, remove, and traverse Node elements
     //Make NodeStorage and Node both templated classes
     //Node storage should be in it's own NodeStorage.h file
-    
+
+	return 0;
 };
