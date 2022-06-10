@@ -8,6 +8,7 @@
 #include "Stack.h"
 #include <ctime>
 #include <fstream>
+#include "Queue.cpp"
 
 using namespace std;
 
@@ -101,6 +102,10 @@ class animal {
     virtual void talk() {
 
     }
+
+    bool operator< (const animal other) {
+        return this->weight < other.weight;
+    }
 };
 
 class cat : animal  {
@@ -190,6 +195,7 @@ int main()
     };
 
     vector<string> vec1{"test", "test2"};
+
     char arr[] = {"testtest2"}; // \0 
     int64_t arr2[] = {10, 20, 30};
 
@@ -200,8 +206,6 @@ int main()
     Node<int> * firstNode_ptr = &firstNode_data;
 
     cout << firstNode << "\n";
-
-
     //int*arrPtr;
     //arrPtr = arr2;
 
@@ -238,7 +242,7 @@ int main()
     //cout << *b;
     //cout << **c;
 
-    int length = sizeof(arr)/sizeof(arr[0]);
+    
     /**
      * 01 a1
      * 02 a2
@@ -252,13 +256,53 @@ int main()
 
     //cout << arr;
 
-    for (auto x : vec1)
-        //cout << x << endl;
+    Queue<int> r1 = Queue<int>{3};
+    Queue<int> r2 = Queue<int>{5};
 
-    for(int n=0; n<length; ++n) {
-        //std::cout << arr[n] << "\n";
+    //hwid spoofer 
+    r1.add(4);
+    r1.add(5);
+
+    r1.traverse();
+
+    r2.add(8);
+
+    int poppedValue = r1.pop();
+
+    r1.traverse();
+
+
+    for (auto val : vec1) {
+        cout << val << endl;
+    }
+
+    int length = sizeof(arr)/sizeof(arr[0]);
+    for(int n=0; n<length; n++) {
+        std::cout << arr[n] << "\n";
     };
 
+    do {
+
+    } while (false);
+
+    while(false) {
+
+    }
+
+    vector<int> ar = { 1, 2, 3, 4, 5 };
+    vector<int>::iterator ptr;
+    for (ptr = ar.begin(); ptr < ar.end(); ptr++)
+        cout << *ptr << " ";
+    //        Min-Heap         Binary Search Tree               AVL BTree   
+    //          1                    6                              6
+    //         / \                  / \                            / \
+    //      2       3             4     8                         
+    //     / \     / \           / \     \
+    //    4   5   6    7            5     16
+    //                                      \
+    //                                      24
+    // O(n) O(logN)   log_2(8) = 3  2^n = 8   2^log_2(x) = x  log_2(2^x) = x
+    //
     //possible errors with complex types
     // Node<int> node = Node(1);
 

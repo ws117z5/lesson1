@@ -1,37 +1,65 @@
 #include <iostream>
+#include "Node.h"
+#include <stdexcept>
 
 using namespace std;
+
+//Queue LIFO
 
 template<class Temp>
 class Queue {
 private:
-    Queue<Temp> * tail = nullptr
-    Queue<Temp> * head = nullptr
-    int size = 0
+
+    Node<Temp> * tail = nullptr;
+    Node<Temp> * head = nullptr;
+
+    int size = 0;
 public:
+    Queue(Temp data) {
+        //Queue 
+        this->tail = this->head = new Node<Temp>{data};
+        size++;
+    }
 
     void add(Temp data){
-        Queue<Temp> * NewParticipant =  new Queue<Temp>{data};
-        this->tail = NewParticipant
-        NewParticipant->tail = nullptr
-        size++
+        Node<Temp> * NewParticipant =  new Node<Temp>{data};
+        this->tail->setNext(NewParticipant);
+        this->tail = NewParticipant;
+        size++;
 
     };
-
-    void pop() {
+    //stack 
+    // 1 -> 2 -> 3
+    //queue
+    // 1 -> 2 -> 3
+    // 1, 2, 3, 4 / 5 6 7 8
+    Temp pop() {
         if (size == 0) {
-            cout<<"Queue is empty!"
+            //cout << "Queue is empty!";
+            throw std::out_of_range("length is zero");
         } 
         if (size == 1) {
-            delete this
-            head = tail = nullptr
-            size--
+            Temp tmp = head->get();
+            delete head;
+            size--;
+            return  tmp;
         } else {
-           this->tail = head
-        
-           delete this
-           size-- 
+            Temp tmp = head->get();
+            head = head->getNext();
+            size--;
+            return tmp;
         }
     };
+
+    void traverse() {
+        Node<Temp> * tmp = head;
+
+        while(tmp->hasNext()) {
+            std::cout << tmp->get() << ", ";
+            tmp = tmp->getNext();
+        }
+
+        std::cout << tmp->get() << "\n";
+    }
 };
        

@@ -1,9 +1,8 @@
-/*This file demonstrate the implementationo of Node ADT*/
-#ifndef LEC1_NODE_H
-#define LEC1_NODE_H
 
-		
-//This Node class can accept any types of data
+#ifndef NODE_H
+#define NODE_H
+
+	//This Node class can accept any types of data
 template<class T>
 class Node {
 private:
@@ -19,8 +18,14 @@ public:
 	}
 
 	~Node() {
-		this->pPrev->pNext = this->pNext;
-		this->pNext->pPrev = this->pPrev;
+		if(this->pPrev != nullptr) {
+			this->pPrev->pNext = this->pNext;
+		}
+
+		if(this->pNext != nullptr) {
+			this->pNext->pPrev = this->pPrev;
+		}
+		
 
 		delete this;
 	}
@@ -74,6 +79,10 @@ public:
 	void setNext(T data) {
 		this->pNext = new Node(data);
 		this->pNext->pPrev = this;
+	}
+
+	void setNext(Node<T> * newNode) {
+		this->pNext = newNode;
 	}
 
 	void deleteNext() {
