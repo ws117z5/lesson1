@@ -1,10 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-//#include "Node.h"
-#include "AStar.h"
-#include <thread>
 #include "Node.h"
+#include "AVLTree.h"
+#include <thread>
 #include "Stack.h"
 #include <ctime>
 #include <fstream>
@@ -160,6 +159,16 @@ struct LinkedList {
     }
 };
 
+template<typename T>
+void myPrintPtr(T * el) {
+        cout << *el;
+}
+
+template<typename T>
+void myPrint(T el) {
+        std::cout << el << " ";
+}
+
 void someFunc() {
     //do someth
 };
@@ -256,20 +265,20 @@ int main()
 
     //cout << arr;
 
-    Queue<int> r1 = Queue<int>{3};
-    Queue<int> r2 = Queue<int>{5};
+    // Queue<int> r1 = Queue<int>{3};
+    // Queue<int> r2 = Queue<int>{5};
 
-    //hwid spoofer 
-    r1.add(4);
-    r1.add(5);
+    // //hwid spoofer 
+    // r1.add(4);
+    // r1.add(5);
 
-    r1.traverse();
+    // r1.traverse();
 
-    r2.add(8);
+    // r2.add(8);
 
-    int poppedValue = r1.pop();
+    // int poppedValue = r1.pop();
 
-    r1.traverse();
+    // r1.traverse();
 
 
     for (auto val : vec1) {
@@ -307,18 +316,27 @@ int main()
     // Node<int> node = Node(1);
 
 
-    // node.get() = 2;
+    //TODO Look at BinarySearchTree.h file, prepare questions.
+    AVLTree<int> AVLRoot = AVLTree<int>{10};
+    AVLRoot.add(20);
+    AVLRoot.add(30);
+    AVLRoot.add(40);
+    AVLRoot.add(50);
+    AVLRoot.add(25);
 
-    // node.setNext(4);
-    // node.setNext(6);
 
-    // node.traverse();
+    //TODO read about dfs and bfs online
+    cout << "\n DFS Preorder traversal \n";
+    AVLRoot.preorderTraverse(myPrint);
 
-    //Homework
-    //Make Node class as a template
-    //create class NodeStorage that will store, add, remove, and traverse Node elements
-    //Make NodeStorage and Node both templated classes
-    //Node storage should be in it's own NodeStorage.h file
+    cout << "\n DFS Inorder traversal \n";
+    AVLRoot.inorderTraverse(myPrint);
 
-	return 0;
+    cout << "\n DFS Postorder traversal \n";
+    AVLRoot.postorderTraverse(myPrint);
+
+    cout << "\n BST traversal \n";
+    AVLRoot.breadthFirstTraversal(myPrint);
+
+    return 0;
 };

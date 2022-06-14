@@ -17,19 +17,6 @@ public:
 		this->pPrev = nullptr;
 	}
 
-	~Node() {
-		if(this->pPrev != nullptr) {
-			this->pPrev->pNext = this->pNext;
-		}
-
-		if(this->pNext != nullptr) {
-			this->pNext->pPrev = this->pPrev;
-		}
-		
-
-		delete this;
-	}
-
 	void add(T data) {
 		//this  * Node node1
 		Node<T> * newNode = new Node<T>{data};
