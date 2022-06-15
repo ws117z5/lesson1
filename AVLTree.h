@@ -23,12 +23,13 @@ public:
     using BinarySearchTree<T>::add;
     
 
-    //TODO Why do we get here instead of BinarySearchTree<T>::add(const T & data, BstNode<T> * node) ?
+    //TODO Why do we get here instead of BinarySearchTree<T>::add(const T & data, BstNode<T> * node)?
+    //TODO watch youtube for step by step process explaining how avl tree works
+    //Here we do the rotation logic 
     BstNode<T> * add(const T & data, BstNode<T> * node) {
 
         if (node == nullptr) return new BstNode<T>(data);
 
-        /* Otherwise, recur down the tree */
         T nodeData = node->get();
 
         if (data < nodeData) {
@@ -66,13 +67,11 @@ public:
             node->setRightChildPtr(rightRotate(node->getRightChildPtr()));
             return leftRotate(node);
         }
-        /* return the (unchanged) node pointer */
+
         return node;
     }
 
-    // A utility function to right
-    // rotate subtree rooted with y
-    // See the diagram given above.
+    //TODO Right rotate 
     BstNode<T> * rightRotate(BstNode<T> * y)
     {
         BstNode<T> * x = y->getLeftChildPtr();
@@ -90,9 +89,7 @@ public:
         return x;
     }
     
-    // A utility function to left
-    // rotate subtree rooted with x
-    // See the diagram given above.
+    //TODO Left Rotate
     BstNode<T> * leftRotate(BstNode<T> * x)
     {
         BstNode<T> * y = x->getRightChildPtr();

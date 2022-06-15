@@ -60,7 +60,7 @@ public:
 template<typename T>
 class BinarySearchTree : public BinaryTreeInterface<T> {
 private:
-    BstNode <T> *rootPtr;
+    BstNode<T> *rootPtr;
 protected:
     int count(BstNode <T> *node) const {
         if(node == nullptr)
@@ -369,14 +369,14 @@ public:
     // like so:
     //        Min-Heap         Binary Search Tree               AVL BTree   
     //          1                    6                              6
-    //         / \                  / \                            / \
     //      2       3             4     8                         
-    //     / \     / \           / \     \
-    //    4   5   6    7            5     16
-    //                                      \
+    //    4   5   6    7            5     16 
     //                                      24 
+
     void visualize() {
-       
+       //this->rootPtr
+       //this->rootPtr->getLeftChild()
+       //this->rootPtr->getRightChild()
     }
 };
 

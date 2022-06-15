@@ -155,7 +155,7 @@ struct LinkedList {
     }
 
     int pop() {
-        //
+        return 0;
     }
 };
 
@@ -173,8 +173,59 @@ void someFunc() {
     //do someth
 };
 
+// void recursivePrint(int, string);
+
+void recursivePrint(int n, string toPrint) {
+    if (n > 0) {
+        std::cout << toPrint << " " << --n << "\n"; 
+        recursivePrint(n, toPrint);
+    }
+}
+
+int fib(long long int n) {
+    if (n <= 2) {
+        return 1;
+    }
+
+    return fib(n-2);
+};
+
+// int_4 -127 127    sign bit
+// unsigned int_4    255 
+// unint 64          18446744073709551615
+
+// 1   fib
+// 2   n
+// 3   fib(1)
+// 4   n-2
+// 5   fib(2)
+// 6   n-4
+// 7   fib(3)
+// 8   n-6
+// 9   addr of fib(2) 
+
+//1 1 2 3 5 8 13 ...
+
+//                 5(5)
+//          3(2)          4(3)
+//    *2(1)   *1(1)     3(2)   *2(1)
+//                 *2(1)  *1(1)
+// (x + y)^n
+// x^n + 2x^(n-1)*y^1 + 3x^n-2y^2 + ....  + x^0 y^n
+//            1
+//          1   1
+//        1   2   1
+//      1   3   3   1
+// (n coose k)x^k-n*y^x-k
+// n choose k
+//    n! 
+// (n-k)!k!   
+//  ( n )
+//  ( k )
 int main() 
 {
+
+    //recursivePrint(3, "recursion is working");
     /**
      * @brief 
      * stack
@@ -315,6 +366,9 @@ int main()
     //possible errors with complex types
     // Node<int> node = Node(1);
 
+    //      
+    //    4
+    //  3   5
 
     //TODO Look at BinarySearchTree.h file, prepare questions.
     AVLTree<int> AVLRoot = AVLTree<int>{10};
@@ -329,6 +383,7 @@ int main()
     cout << "\n DFS Preorder traversal \n";
     AVLRoot.preorderTraverse(myPrint);
 
+    //TODO use debugger step into function to trace how this method works using function callback
     cout << "\n DFS Inorder traversal \n";
     AVLRoot.inorderTraverse(myPrint);
 
@@ -337,6 +392,11 @@ int main()
 
     cout << "\n BST traversal \n";
     AVLRoot.breadthFirstTraversal(myPrint);
+
+
+
+
+
 
     return 0;
 };

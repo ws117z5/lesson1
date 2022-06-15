@@ -3,26 +3,19 @@
 using namespace std;
 
 template<typename T>
-class Tree {
+class BSTNode {
 private:
-    Tree*Right = nullptr
-    Tree*Left = nullptr
+    BSTNode<T> * right = nullptr;
+    BSTNode<T> * left = nullptr;
     int data;
 public:
-    Beginning (T data) {
-        this->data=data
-        this->Right = nullptr
-        this->Left = nullptr
+    BSTNode (T data) : data(data) {
+        this->right = nullptr;
+        this->left = nullptr;
     };
 
-    Add (T data) {
-        if (data > //smth) 
-        {
-            //smth->Right = data
-        };
-        else {
-            //smth->Left = data
-        }
+    void set (T data) {
+        
     }
 
 };
