@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Node.h"
 #include <stdexcept>
@@ -8,7 +9,7 @@ using namespace std;
 
 template<class Temp>
 class Queue {
-private:
+protected:
 
     Node<Temp> * tail = nullptr;
     Node<Temp> * head = nullptr;
