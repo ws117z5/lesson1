@@ -72,6 +72,10 @@ public:
 		this->pNext = newNode;
 	}
 
+	void setPrev(Node<T> * newNode) {
+		this->pPrev = newNode;
+	}
+
 	void deleteNext() {
 		this->pNext = nullptr;
 	}

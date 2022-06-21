@@ -8,14 +8,20 @@
             "name": "run-test",
             "type": "cppdbg",
             "request": "launch",
+            "targetArchitecture": "x64",
             "preLaunchTask": "cppbuild",
             "program": "${workspaceFolder}/build/a.out",
             "cwd": "${workspaceFolder}",
             //"externalConsole": true,
             "args": [],
             "environment": [],
-            "stopAtEntry": true,
-            "MIMode": "lldb"
+            //"stopAtEntry": true,
+            "MIMode": "lldb",
+            "logging": {
+                "trace": false,
+                "traceResponse": false,
+                "engineLogging": false
+            }
         }
     ]
 }

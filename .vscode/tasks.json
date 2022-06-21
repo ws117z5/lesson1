@@ -8,7 +8,8 @@
                 "-std=c++17",
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                //"-pthread",
+                "main.cpp",
                 "-o",
                 "${workspaceFolder}/build/a.out"
             ],

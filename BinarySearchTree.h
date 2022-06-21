@@ -370,9 +370,15 @@ public:
     // like so:
     //        Min-Heap         Binary Search Tree               AVL BTree   
     //          1                    6                              6
-    //      2       3             4     8                         
+    //      2       3  \n         4     8                         
     //    4   5   6    7            5     16 
     //                                      24 
+    //                      height = 0
+    //    queue             while (queue not empty)   cout << \n
+    //    ->rootPtr         ->left      getHeight(left)
+    //                      ->right     getHeight(rigth)
+    //                      if (getHeight(rigth) > height) { cout << "\n"; height = getHeight(rigth); }
+    //                      queue -> push (left ... right)
 
     void visualize() {
         BstNode<T> *newRightPtr;
@@ -380,7 +386,7 @@ public:
         BstNode<T> *back;
         int degree = 1;
         int counter = 0;
-        height = getHeight();
+        int height = getHeight(rootPtr);
         while (height != 0) {
             do{
                 cout << "\n";
@@ -394,9 +400,7 @@ public:
                 height--;
                 newLeftPtr = newLeftPtr->getLeftChildPtr();
                 newRightPtr = newRightPtr->getRightChildPtr();
-            };
-            while(degree != counter)
-            rootPtr->getLeftChildPtr()
+            } while(degree != counter);
         };
        //this->rootPtr
        //this->rootPtr->getLeftChild()

@@ -16,6 +16,8 @@ protected:
 
     int size = 0;
 public:
+    Queue() {}
+    
     Queue(Temp data) {
         //Queue 
         this->tail = this->head = new Node<Temp>{data};
