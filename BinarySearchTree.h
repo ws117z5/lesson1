@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include "BstNode.h"
 
+using namespace std;
 template<typename T>
 class BinaryTreeInterface {
 public:
@@ -374,6 +375,29 @@ public:
     //                                      24 
 
     void visualize() {
+        BstNode<T> *newRightPtr;
+        BstNode<T> *newLeftPtr;
+        BstNode<T> *back;
+        int degree = 1;
+        int counter = 0;
+        height = getHeight();
+        while (height != 0) {
+            do{
+                cout << "\n";
+                BstNode<T> *newLeftPtr = rootPtr->getLeftChildPtr();
+                BstNode<T> *newRightPtr = rootPtr->getRightChildPtr();
+                BstNode<T> *back = rootPtr->getRightChildPtr();
+                cout << newLeftPtr->get();
+                cout << " ";
+                cout << newRightPtr->get();
+                counter++;
+                height--;
+                newLeftPtr = newLeftPtr->getLeftChildPtr();
+                newRightPtr = newRightPtr->getRightChildPtr();
+            };
+            while(degree != counter)
+            rootPtr->getLeftChildPtr()
+        };
        //this->rootPtr
        //this->rootPtr->getLeftChild()
        //this->rootPtr->getRightChild()
