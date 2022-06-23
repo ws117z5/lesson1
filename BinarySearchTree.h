@@ -379,33 +379,19 @@ public:
     //                      ->right     getHeight(rigth)
     //                      if (getHeight(rigth) > height) { cout << "\n"; height = getHeight(rigth); }
     //                      queue -> push (left ... right)
-
+    
+    int height = 0
     void visualize() {
-        BstNode<T> *newRightPtr;
-        BstNode<T> *newLeftPtr;
-        BstNode<T> *back;
-        int degree = 1;
-        int counter = 0;
-        int height = getHeight(rootPtr);
-        while (height != 0) {
-            do{
+        while 
+            if(getHeight(right) > height) {
                 cout << "\n";
-                BstNode<T> *newLeftPtr = rootPtr->getLeftChildPtr();
-                BstNode<T> *newRightPtr = rootPtr->getRightChildPtr();
-                BstNode<T> *back = rootPtr->getRightChildPtr();
-                cout << newLeftPtr->get();
-                cout << " ";
-                cout << newRightPtr->get();
-                counter++;
-                height--;
-                newLeftPtr = newLeftPtr->getLeftChildPtr();
-                newRightPtr = newRightPtr->getRightChildPtr();
-            } while(degree != counter);
-        };
-       //this->rootPtr
-       //this->rootPtr->getLeftChild()
-       //this->rootPtr->getRightChild()
-    }
+                height = getHeight(right);
+            };
+            for(getHeight(right) - height + 1, getHeight(right),1) {
+
+            };
+
+    };
 };
 
 #endif //GROUPPROJECT_BINARYSEARCHTREE_H
