@@ -16,11 +16,21 @@ int height(BstNode<T> * node) {
     return node->getHeight();
 }
 
+// Get Balance factor of node N
+template<typename T>
+int getBalance(BstNode<T>  * node)
+{
+    if (node == nullptr)
+        return 0;
+    return height(node->getLeftChildPtr()) - height(node->getRightChildPtr());
+}
+
 template<typename T>
 class AVLTree : public BinarySearchTree<T> {
 public:
     using BinarySearchTree<T>::BinarySearchTree;
     using BinarySearchTree<T>::add;
+    using BinarySearchTree<T>::visualize;
     
 
     //TODO Why do we get here instead of BinarySearchTree<T>::add(const T & data, BstNode<T> * node)?
@@ -31,21 +41,22 @@ public:
         if (node == nullptr) return new BstNode<T>(data);
 
         T nodeData = node->get();
-
+        BstNode<T> * _tmp = nullptr;
         if (data < nodeData) {
-            node->setLeftChildPtr(add(data, node->getLeftChildPtr()));
-        }
-        else if (nodeData < data) {
-            node->setRightChildPtr(add(data, node->getRightChildPtr()));
+            node->setLeftChildPtr(
+                _tmp = add(data, node->getLeftChildPtr())
+            );
+        } else if (nodeData < data) {
+            node->setRightChildPtr(
+                _tmp = add(data, node->getRightChildPtr())
+            );
         } else {
             return node;
         }
 
-        node->setHeight(
-            1 + max(height(node->getLeftChildPtr()),  height(node->getRightChildPtr()))
-        );
+        node->setHeight(max(height(node->getLeftChildPtr()),  height(node->getRightChildPtr())) + 1);
 
-        int balance = height(node->getLeftChildPtr()) - height(node->getRightChildPtr());
+        int balance = getBalance(node);
 
 
         // Left Left Case
@@ -58,20 +69,20 @@ public:
     
         // Left Right Case
         if (balance > 1 && node->getLeftChildPtr() != nullptr && data > node->getLeftChildPtr()->get()) {
-            node->setLeftChildPtr(leftRotate(node->getLeftChildPtr()));
-            return rightRotate(node);
+            node->setLeftChildPtr( this->leftRotate(node->getLeftChildPtr()) );
+            return this->rightRotate(node);
         }
     
         // Right Left Case
         if (balance < -1 && node->getRightChildPtr() != nullptr && data < node->getRightChildPtr()->get()) {
-            node->setRightChildPtr(rightRotate(node->getRightChildPtr()));
+            node->setRightChildPtr( this->rightRotate(node->getRightChildPtr()) );
             return leftRotate(node);
         }
 
         return node;
     }
 
-    //TODO Right rotate 
+    //TODO Right rotate  
     BstNode<T> * rightRotate(BstNode<T> * y)
     {
         BstNode<T> * x = y->getLeftChildPtr();

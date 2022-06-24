@@ -8,6 +8,7 @@
 #include <string>
 #include <stdexcept>
 #include "BstNode.h"
+#include "Queue.cpp"
 
 using namespace std;
 template<typename T>
@@ -82,7 +83,7 @@ protected:
         } // end if
     };
 
-    // Recursively searches for target value in the tree by using a // preorder traversal.
+    //Recursively searches for target value in the tree by using a // preorder traversal.
     BstNode <T> *findNode(const T &target, bool &success, BstNode <T> *treePtr) const {
         if(treePtr != nullptr) {
             T cValue = treePtr->get();
@@ -99,17 +100,17 @@ protected:
         return treePtr;
     };
 
-    BstNode <T> *copyTree(BstNode <T> *treePtr) const {
-        BstNode<T>* newTreePtr = nullptr;
+    // BstNode <T> *copyTree(BstNode <T> *treePtr) const {
+    //     BstNode<T>* newTreePtr = nullptr;
 
-        if (treePtr != nullptr) {
-            //T data = treePtr->getItem();
-            newTreePtr = new BstNode<T>(treePtr->get(), nullptr, nullptr);
-            newTreePtr->setLeftChildPtr(copyTree(treePtr->getLeftChildPtr()));
-            newTreePtr->setRightChildPtr(copyTree(treePtr->getRightChildPtr()));
-        }
-        return newTreePtr;
-    };
+    //     if (treePtr != nullptr) {
+    //         //T data = treePtr->getItem();
+    //         newTreePtr = new BstNode<T>(treePtr->get(), nullptr, nullptr);
+    //         newTreePtr->setLeftChildPtr(copyTree(treePtr->getLeftChildPtr()));
+    //         newTreePtr->setRightChildPtr(copyTree(treePtr->getRightChildPtr()));
+    //     }
+    //     return newTreePtr;
+    // };
 
     /* Print nodes at a given level */
     void printLevel(int level, void visit(T), BstNode<T> * node) const
@@ -228,6 +229,10 @@ public:
         }
     };
 
+    BstNode<T> * getRootNode() {
+        return this->rootPtr;
+    }
+
     T getRootData() const {
         if(rootPtr == nullptr) {
             throw std::range_error("Root node is empty");
@@ -247,10 +252,10 @@ public:
         T nodeData = node->get();
 
         if (data < nodeData) {
-            node->setLeftChildPtr(add(data, node->getLeftChildPtr()));
+            node->setLeftChildPtr(this->add(data, node->getLeftChildPtr()));
         }
         else if (nodeData < data) {
-            node->setRightChildPtr(add(data, node->getRightChildPtr()));
+            node->setRightChildPtr(this->add(data, node->getRightChildPtr()));
         }
 
         /* return the (unchanged) node pointer */
@@ -259,7 +264,7 @@ public:
 
     // Adds a node
     void add(const T &newData) {
-        rootPtr = add(newData, rootPtr);
+        this->rootPtr = this->add(newData, rootPtr);
     };
 
     /*
@@ -379,17 +384,36 @@ public:
     //                      ->right     getHeight(rigth)
     //                      if (getHeight(rigth) > height) { cout << "\n"; height = getHeight(rigth); }
     //                      queue -> push (left ... right)
-    
-    int height = 0
     void visualize() {
-        while 
-            if(getHeight(right) > height) {
-                cout << "\n";
-                height = getHeight(right);
-            };
-            for(getHeight(right) - height + 1, getHeight(right),1) {
+        Queue<BstNode<T> *> elements = Queue<BstNode<T> *>{};
+        elements.add(this->rootPtr); 
 
-            };
+
+        int currentHeight = this->rootPtr->getHeight();
+        while (!elements.empty()) {
+            BstNode<T> * currentNode = elements.pop();
+
+            if(currentNode->hasLeft()) {
+                elements.add(currentNode->getLeftChildPtr());
+            }
+
+            if(currentNode->hasRight()) {
+                elements.add(currentNode->getRightChildPtr());
+            }
+
+            //preorder, if previous element was higher, we insert a new line
+            int height = currentNode->getHeight();
+            if (height < currentHeight) {
+                std::cout << "\n";
+                currentHeight = height;
+            }
+
+            std::cout << currentNode->get() << " ";
+            //If height of the current element is bigger than presaved currentHeight we break the line
+            // and re-store the currentHeight with current value
+        }
+
+        std::cout << "\n";
 
     };
 };

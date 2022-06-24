@@ -19,7 +19,9 @@ public:
     BstNode() {};
     BstNode(const T& data) {
         this->setData(data);
+        this->height = 1;
     };
+    
     BstNode(const T& data, BstNode<T>* leftPtr, BstNode<T>* rightPtr) {
         this->setData(data);
         this->right = rightPtr;
@@ -31,7 +33,7 @@ public:
     }
 
     void setHeight(int h) {
-        height = h;
+        this->height = h;
     }
 
     void setItem(const T& data) {
@@ -41,6 +43,14 @@ public:
     bool isLeaf() const {
         return this->right == nullptr && this->left == nullptr;
     };
+
+    bool hasRight() {
+        return this->right != nullptr;
+    }
+
+    bool hasLeft() {
+        return this->left != nullptr;
+    }
 
     BstNode<T> * getLeftChildPtr() const {
         return this->left;

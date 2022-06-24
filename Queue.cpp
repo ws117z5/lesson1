@@ -25,11 +25,16 @@ public:
     }
 
     void add(Temp data){
-        Node<Temp> * NewParticipant =  new Node<Temp>{data};
-        this->tail->setNext(NewParticipant);
-        this->tail = NewParticipant;
-        size++;
+        Node<Temp> * newParticipant =  new Node<Temp>{data};
 
+        if (this->size == 0) {
+            this->tail = this->head = newParticipant;
+        } else {
+            this->tail->setNext(newParticipant);    // add to chain
+            this->tail = newParticipant;            //set tail link to newParticipant
+        }
+
+        size++;
     };
     //stack 
     // 1 -> 2 -> 3
@@ -63,6 +68,10 @@ public:
         }
 
         std::cout << tmp->get() << "\n";
+    }
+
+    bool empty() {
+        return this->size == 0;
     }
 };
        
