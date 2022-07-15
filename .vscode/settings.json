@@ -108,12 +108,15 @@
         "stop_token": "cpp",
         "syncstream": "cpp",
         "filesystem": "cpp",
-        "version": "cpp"
+        "version": "cpp",
+        "*.inc": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "files.exclude": {
-        //"AVLTree.h": true,
+        "AVLTree.h": true,
         "AStar.h": true,
+        //"SafeNode.h": true,
+        //"SafeStack.h": true,
         "topics.txt": true,
         //"Main.h": true,
     }

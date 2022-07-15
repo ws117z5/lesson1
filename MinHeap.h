@@ -1,14 +1,19 @@
 #include<iostream>
 #include<climits>
+#include<cmath>
 
 using namespace std;
-  
+
+
+#ifndef HEAP_SWAP
+#define HEAP_SWAP
 void swap(int *x, int *y)
 {
     int temp = *x;
     *x = *y;
     *y = temp;
 }
+#endif
   
 // A class for Min Heap
 class MinHeap
@@ -56,8 +61,8 @@ public:
     int extractMin() {
         if (this->size <= 0)
             return INT_MAX;
-        if (this->size == 1)
-        {
+            
+        if (this->size == 1) {
             this->size--;
             return this->data[0];
         }
@@ -91,12 +96,20 @@ public:
         this->decreaseKey(i, INT_MIN);
         this->extractMin();
     }
+
+
+    void print() {
+        for (int i=0; i < this->size; i++) {
+            cout << this->data[i] << " ";
+        }
+        cout << "\n";
+    }
     
-    void insertKey(int k) {
+    void insert(int k) {
         if (this->size == this->capacity)
         {
             //TODO resize 
-            cout << "\nOverflow: Could not insertKey\n";
+            cout << "\nOverflow: Could not insert\n";
             return;
         }
     

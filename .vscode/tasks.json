@@ -7,8 +7,9 @@
             "args": [
                 "-std=c++17",
                 "-fdiagnostics-color=always",
+                //"-fsanitize=address",
                 "-g",
-                //"-pthread",
+                "-pthread",
                 "main.cpp",
                 "-o",
                 "${workspaceFolder}/build/a.out"

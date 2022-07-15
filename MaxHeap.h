@@ -9,14 +9,16 @@
  */
 #pragma once
 #import <iostream>
-#import "PriorityQueue.h"
 
+#ifndef HEAP_SWAP
+#define HEAP_SWAP
 void swap(int *x, int *y)
 {
     int temp = *x;
     *x = *y;
     *y = temp;
 }
+#endif
  
 // Main class
 class MaxHeap {
@@ -24,6 +26,7 @@ class MaxHeap {
     int capacity;
     int size;
  
+public:
     MaxHeap(int cap) {
         // This keyword refers to current instance itself
         this->capacity = cap;
@@ -42,6 +45,13 @@ class MaxHeap {
     int right(int pos){ 
         return (2 * pos) + 2; 
     }
+
+    //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    /**
+     *          0
+     *      1       2
+     *  3     4   5     6
+     */
  
     bool isLeaf(int pos)
     {
@@ -56,10 +66,9 @@ class MaxHeap {
         if (isLeaf(pos))
             return;
  
-        if (data[pos] < data[left(pos)]
-            || data[pos] < data[right(pos)]) {
+        if (data[pos] < data[left(pos)] || data[pos] < data[right(pos)]) {
  
-            if (data[left(pos)] > Heap[right(pos)]) {
+            if (data[left(pos)] > data[right(pos)]) {
                 swap(&data[pos], &data[left(pos)]);
                 maxHeapify(left(pos));
             } else {
@@ -68,8 +77,15 @@ class MaxHeap {
             }
         }
     }
+
+    void print() {
+        for (int i=0; i < this->size; i++) {
+            cout << this->data[i] << " ";
+        }
+        cout << "\n";
+    }
  
-    void insert(int element) {
+    void insert(int k) {
         if (this->size == this->capacity)
         {
             //TODO resize 
@@ -77,34 +93,16 @@ class MaxHeap {
             return;
         }
         
-        data[size] = element;
+       this->data[size] = k;
  
         // Traverse up and fix violated property
-        int current = size;
-        while (data[current] > data[parent(current)]) {
-            swap(&data[current], &data[parent(current)]);
-            current = parent(current);
+        int currentIdx = size;
+        int parentIdx = this->parent(currentIdx);
+        while (this->data[currentIdx] > this->data[parentIdx]) {
+            swap(&this->data[currentIdx], &this->data[parentIdx]);
+            currentIdx = parent(currentIdx);
         }
         size++;
-    }
- 
-    // Method 8
-    // To display heap
-    void print()
-    {
-       
-      for(int i=0;i<size/2;i++){
- 
-            std::cout << "Parent Node : " << data[i];
-             
-            if(left(i)<size) //if the child is out of the bound of the array
-               std::cout << " Left Child Node: " << data[left(i)];
-             
-            if(right(i)<size) //if the right child index must not be out of the index of the array
-                std::cout << " Right Child Node: " <<  data[right(i)] << "\n";
-             
-        }
-           
     }
  
     int extractMax() {
@@ -113,4 +111,4 @@ class MaxHeap {
         maxHeapify(0);
         return popped;
     }
-}
+};
