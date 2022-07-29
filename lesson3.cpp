@@ -128,7 +128,7 @@ enum Mode { NotSafe, Safe, Safest, IntIncrement, IntIncrementAtomic };
 //atomics
 //futures
 //promises
-int not_main(Mode mode, int times) 
+void not_main(Mode mode, int times) 
 {
     vector<string> data{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
     vector<thread> pool;
@@ -260,4 +260,5 @@ int not_main(Mode mode, int times)
 // };
  
 }
+
 };

@@ -1,3 +1,5 @@
+#pragma once
+
 #include<iostream>
 #include<climits>
 #include<cmath>
@@ -15,6 +17,7 @@ void swap(int *x, int *y)
 }
 #endif
   
+
 // A class for Min Heap
 class MinHeap
 {
@@ -23,7 +26,16 @@ class MinHeap
     int size;
 public:
     MinHeap(int cap) : capacity(cap), size(0) {
-        data = new int[cap];
+        this->data = new int[cap];
+    }
+
+    MinHeap(std::vector<int> data) {
+        this->capacity = data.size();
+        this->data = new int[this->capacity];
+        this->size = 0;
+        for (auto val : data) {
+            this->insert(val);
+        }
     }
   
     // to heapify a subtree with the root at given index
@@ -56,6 +68,13 @@ public:
     int right(int i) { 
         return (2*i + 2); 
     }
+
+    /** 0 1 2 3 4 5 6
+     * 
+     *          0
+     *      1        2
+     *    3   4   5     6
+     */
   
     // to extract the root which is the minimum element
     int extractMin() {
@@ -103,6 +122,24 @@ public:
             cout << this->data[i] << " ";
         }
         cout << "\n";
+    }
+
+
+    //depth first search 
+    std::vector<int> dfs() {
+        std::vector<int> ret;
+        dfs(0, &ret);
+
+        return ret;
+    }
+    
+    void dfs(int i, std::vector<int> * ret) {
+        if (i < this->size) {
+            ret->push_back(this->data[i]);
+            //std::cout << this->data[i] << " ";
+            dfs(this->left(i), ret);
+            dfs(this->right(i), ret);
+        }
     }
     
     void insert(int k) {

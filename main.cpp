@@ -1,31 +1,13 @@
 #include <iostream>
 
 
-void *myMalloc(size_t size) {
-    // log
-    static int count = 1;
-    std::cout << "Malloc: " << count << std::endl;
-    count++;
-    return malloc(size);
-}
-
-void myFree(void *ptr) {
-    // log
-    static int count = 1;
-    std::cout << "Malloc: " << count << std::endl;
-    count++;
-    free(ptr);
-}
-
-#define malloc(size) myMalloc(size)
-#define free(ptr) myFree(ptr)
-
-
 #include <string>
 #include "lesson2.cpp"
 #include "lesson3.cpp"
-#include "HashTable.h"
+//#include "HashTable.h"
+#include "Sort.h"
 #include "Memory.cpp"
+#include "Graph.h"
 
 using namespace std;
 
@@ -73,6 +55,29 @@ namespace One {
 
 using namespace One;
 
+class Allocation {
+private:
+    std::string first;
+    std::string second;
+    int i;
+public:
+    Allocation() = default;
+
+    Allocation(char *  f, char * s, int i) : first(f), second(s), i(i) {
+        //
+    }
+
+    Allocation(const std::string & f, const std::string & s, int i) : first(f), second(f), i(i) {
+        //f += " ";
+        //
+    }
+
+    Allocation(std::string && f, std::string && s, int i) : first(std::move(f)), second(std::move(s)), i(i) {
+        //
+    }
+
+};
+
 int main() 
 {
     //thread 
@@ -104,6 +109,8 @@ int main()
     //l3::not_main(l3::Safest, 3);    //will hold and data wont be lost
     //l2::not_main();               //heaps
 
+    //bash sample
+    //for i in {1..100}; do ./a.out; done | sort | uniq -c
 
     //MemoryTest::main();
 
@@ -122,6 +129,7 @@ int main()
     // , add/modify pPrev related functions into it. After it works, change Classes that uses current Node, to 
     // #nameityourself, check if everything still works
 
+
     //5. mix'n'match imagine that we have a hashtable but we dont resize the array every time we hit a collision, 
     // instead of actual values we store Nodes with values, and when the collision occurs, we put the current input into pNext
     // This node should store both key and value, so you have two options here(pick one):
@@ -129,8 +137,58 @@ int main()
     // (b) Create an extended class for Node, that would have a key parameter.
     // Wrap your work into A LinkedHashTable.h file/class
 
+    /**
+     * hash % capacity
+     * sqrt(cap)
+     * 1    [key, value] -> [key, value] -> ... -> sqrt(cap) 
+     * 2    [key, value]
+     * 3
+     * 4
+     * 5
+     * 6
+     * 7
+     * 
+     */
+
     //6. can we create an avl tree without pointers? read about heap data structure
 
-    return 0;
+    gr::graph_test();
 
+    int n [] = {1, 4, 15, 7, 10};
+    // 0 1 0 0 1 0 0 1 0 0 1 0 0 0 0 1
+    // 0 1 1 1 2 2 2 3 3 3  4  4  4  4  4  5
+    // 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+    // 1 4 7 10 15
+    int size = sizeof(n)/sizeof(n[0]);
+    //selectionSort(n, size);
+    //bubbleSort(n, size);
+
+    std::vector<int> nv{1, 4, 15, 7, 10};
+    //std::vector<int> sorted = countSort(nv);
+
+    // for (int i = 0; i < size; i++) {
+    //     cout << sorted[i] << " ";
+    // }
+
+
+    //mh.print();
+ 
+    std::vector<int> sorted = heapSort(nv);
+
+    for (auto val : sorted) {
+        cout << val << " ";
+    }
+    cout << "\n";
+
+
+
+    std::string f = "John";
+
+    std::string l = "Smith";
+    Allocation * a = new Allocation("John", "Smith", 0);
+    Allocation * b = new Allocation(f, l, 1);
+    return 0;
 }
+
+
+

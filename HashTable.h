@@ -72,6 +72,8 @@ uint64 murmur64(uint64 h) {
 }
 
 
+//TODO
+// create class to store key, value
 
 template<typename K, typename V, int N = 0>
 class HashTable {
@@ -94,6 +96,7 @@ public:
                 //this->keys[i]
 
             } else {
+                //TODO keys[i] are now a linked list
                 this->keys[i] = K{};
             }
             this->exists[i] = false;
@@ -105,6 +108,7 @@ public:
         //delete[] exists;
     }
 
+    //TODO search in linked list
     V & operator [] (K key) {
 		uint64 hash = getHash(key);
         uint64 index = hash % this->cap;
@@ -114,6 +118,9 @@ public:
             this->exists[index] = true;
         }
         
+        //node tmp = this->data[index] 
+        // (while key != Node.get()->getKey()) 
+        //      tmp = tmp.next
         return this->data[index];
 	}
 
@@ -133,6 +140,7 @@ public:
         return hash;
     }
 
+    //dont touch 
     void insert(const K (&keys) [N], const V &value) {
         uint64 key = 0;
         int size = sizeof(keys)/sizeof(keys[0]);
@@ -160,6 +168,7 @@ public:
         this->size++;
     }
 
+    //TODO inseart as a linked list node
     void insert(const K &key, const V &value) {
         if(this->cap <= this->size) {
             //we need to resize the array
@@ -180,6 +189,7 @@ public:
         this->size++;
     }
 
+    //dont touch 
     V get(const K (&keys) [N]) {
         uint64 key = 0;
         int size = sizeof(keys)/sizeof(keys[0]);
@@ -197,7 +207,9 @@ public:
         return this->data[index];
     }
 
+     //TODO get + search within linked list
     V get(const K &key) {
+       
         uint64 hash = getHash(key);
         uint64 index = hash % this->cap;
 
@@ -208,6 +220,7 @@ public:
         return this->data[index];
     }
 
+    //dont touch 
     bool isSet(const K (&keys) [N]) {
         uint64 key = 0;
         int size = sizeof(keys)/sizeof(keys[0]);
@@ -222,6 +235,8 @@ public:
         return this->exists[index];
     }
 
+
+    //TODO + search within linked list
     bool isSet(const K &key) {
         uint64 hash = getHash(key);
         uint64 index = hash % this->cap;
