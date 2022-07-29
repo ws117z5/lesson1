@@ -188,7 +188,53 @@ public:
         cout << "Minimum Cost Spanning Tree: " << ans;
     }
 };
+
+//Graphs 
+// Weighted - Weightless
+// Single / Bi Directional
+// Adjacency Matrix / Adjacency List
+// \ 0 1 2 3 4 5 6 7 8 9 10 11 12
+// 0 1 1 1 1 1 0 0 1 1 1  0  0  0
+// 1 0 1 0 0 0 0 1 0 1 0  1 1 1
+// 2 0 0 0 0 1 0 0 0 0 0  0 0 0
+// 3 0 1 1 1 1 1 1 1 1 1  1 1 1
  
+ // Adjecency matrix 
+ // \ 0 1 2 3 4 5 6 7 8 9 10 11 12
+ // 0 0 0
+ // 1 0 0 1
+ // 2   0 0
+
+//               ^
+//TODO like here |
+std::vector<std::vector<int>> convertMapToGraph(std::vector<std::vector<int>> map) {
+    std::vector<std::vector<int>> ret;
+    //logic here
+    return ret;
+}
+
+class Edge {
+    int vertex;
+    int weight;
+};
+
+class EdgeOther {
+    int vertex1;
+    int vertex2;
+    int weight;
+};
+ // Adjacency List
+ //             (v)(w)
+ // adj[0] = [[1, 1], [2, 2]]
+ // adj[1] = [[3, 5], [0, 1]]
+ //                .
+ // or
+ // adj[int] = {Edge, Edge, Edge}
+
+ // Adj list (unordered)
+ // adj[] [[n1, n2, w], ...]
+ // adj = [[0, 1, 1], [0, 2, 2], ...]
+ // adj = [EdgeOther, EdgeOther, EdgeOther]
 int graph_test()
 {
     std::cout << "Simple Graph: \n";
